@@ -46,7 +46,7 @@ class EmotionalChatbot:
                         return data["joke"] if "joke" in data else f"{data.get("setup","")} - { data.get("delivery", "")}"
             except requests.RequestException:
                 continue  
-        return random.choice(self.fallback_jokes)     #incase APIS fail
+        return random.choice(self.fallback_jokes)     #incaseAPISfail
     def get_fact(self):
         facts= [
             "https://uselessfacts.jsph.pl/api/v2/facts/random",
@@ -169,4 +169,5 @@ class EmotionalChatbot:
 
 if __name__ =="__main__":
     bot =EmotionalChatbot()
+
     bot.start_bot()
