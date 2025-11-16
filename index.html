@@ -404,7 +404,7 @@ cd funbot</pre>
             
             // Simulate bot response
             setTimeout(() => {
-                const botResponse = generateBotResponse(userInput.value);
+                fetch("http://127.0.0.1:5000/chat", {     method: "POST",     headers: {"Content-Type": "application/json"},     body: JSON.stringify({message: userInput.value}) }) .then(res => res.json()) .then(data => {     const botMessage = document.createElement("div");     botMessage.className = "message bot-message";     botMessage.innerHTML = `<div class="message-bubble bot-bubble">${data.reply}</div>`;     chatMessages.appendChild(botMessage);      chatMessages.scrollTop = chatMessages.scrollHeight; });
                 const botMessage = document.createElement('div');
                 botMessage.className = 'message bot-message';
                 botMessage.innerHTML = `<div class="message-bubble bot-bubble">${botResponse}</div>`;
@@ -421,37 +421,7 @@ cd funbot</pre>
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
         
-        function generateBotResponse(input) {
-            input = input.toLowerCase();
-            
-            if (input.includes('joke')) {
-                const jokes = [
-                    "Why don't scientists trust atoms? Because they make up everything!",
-                    "Why did the scarecrow win an award? He was outstanding in his field!",
-                    "Why don't eggs tell jokes? They'd crack each other up!"
-                ];
-                return `😂 ${jokes[Math.floor(Math.random() * jokes.length)]}`;
-            }
-            
-            if (input.includes('fact')) {
-                const facts = [
-                    "Honey never spoils. Archaeologists have found 3000-year-old honey that's still edible!",
-                    "Octopuses have three hearts and blue blood!",
-                    "A day on Venus is longer than a year on Venus!"
-                ];
-                return `📚 ${facts[Math.floor(Math.random() * facts.length)]}`;
-            }
-            
-            if (input.includes('sad') || input.includes('unhappy')) {
-                return "I'm sorry you're feeling down. Would you like to hear a joke or a fun fact to cheer you up?";
-            }
-            
-            if (input.includes('happy') || input.includes('good')) {
-                return "It's wonderful to see you so happy! Your joy is contagious! 😊";
-            }
-            
-            if (input.includes('angry') || input.includes('mad')) {
-                return "I sense some frustration. Take a deep breath - you've got this! 💪";
+   
             }
             
             const responses = [
@@ -473,4 +443,5 @@ cd funbot</pre>
         });
     </script>
 </body>
+
 </html>
