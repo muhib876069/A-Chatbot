@@ -17,132 +17,51 @@
             color: #333;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            padding: 20px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
         }
 
         .header {
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
             color: white;
         }
 
         .header h1 {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .header p {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             opacity: 0.9;
         }
 
-        .bot-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-        }
-
-        .card {
+        .chat-container {
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            padding: 30px;
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h2 {
-            color: #764ba2;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .feature {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-        }
-
-        .feature h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
-        .code-block {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-        }
-
-        .btn {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            margin: 10px 5px;
-        }
-
-        .btn:hover {
-            background: #764ba2;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .demo {
-            background: #f0f4f8;
-            padding: 25px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-
-        .chat-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             overflow: hidden;
+            margin-bottom: 20px;
         }
 
         .chat-header {
             background: #667eea;
             color: white;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
         }
 
         .chat-messages {
-            height: 300px;
+            height: 400px;
             overflow-y: auto;
-            padding: 15px;
+            padding: 20px;
+            background: #f8f9fa;
         }
 
         .message {
@@ -159,9 +78,10 @@
         }
 
         .message-bubble {
-            max-width: 70%;
+            max-width: 80%;
             padding: 12px 18px;
             border-radius: 20px;
+            word-wrap: break-word;
         }
 
         .user-bubble {
@@ -171,250 +91,122 @@
         }
 
         .bot-bubble {
-            background: #f0f0f0;
+            background: white;
             color: #333;
             border-bottom-left-radius: 5px;
+            border: 1px solid #e0e0e0;
         }
 
-        .footer {
-            text-align: center;
-            padding: 30px;
+        .chat-input {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+
+        .chat-input button {
+            background: #667eea;
             color: white;
-            margin-top: 40px;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .chat-input button:hover {
+            background: #5a6fd8;
         }
 
         .typing-indicator {
-            display: none;
-            padding: 10px;
+            padding: 10px 20px;
             color: #666;
             font-style: italic;
+            display: none;
         }
 
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
+        .info-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .info-section a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .info-section a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <div class="bot-icon">🤖</div>
-            <h1>FunBot</h1>
-            <p>An Emotional AI Chatbot with Mood Detection</p>
-            <div style="margin-top: 30px;">
-                <a href="#demo" class="btn">Live Demo</a>
-                <a href="#code" class="btn">View Code</a>
-                <a href="#features" class="btn">Features</a>
-            </div>
+            <h1>🤖 FunBot Demo</h1>
+            <p>Emotional AI Chatbot - Live Web Version</p>
         </header>
 
-        <section class="card">
-            <h2>About FunBot</h2>
-            <p>FunBot is an intelligent Python chatbot that can detect user emotions and respond accordingly. It uses natural language processing to understand your mood and provides appropriate responses, jokes, and interesting facts.</p>
-            <p>The bot integrates with multiple free APIs to fetch real-time jokes and facts, making every conversation unique and engaging.</p>
-        </section>
-
-        <section id="features" class="card">
-            <h2>Key Features</h2>
-            <div class="features-grid">
-                <div class="feature">
-                    <h3>😊 Emotion Detection</h3>
-                    <p>Detects user emotions (happy, sad, angry, neutral) based on keywords in the conversation.</p>
-                </div>
-                <div class="feature">
-                    <h3>😂 Joke Generator</h3>
-                    <p>Fetches random jokes from multiple APIs to keep the conversation fun and engaging.</p>
-                </div>
-                <div class="feature">
-                    <h3>📚 Fact Provider</h3>
-                    <p>Shares interesting facts from various sources including cat facts, dog facts, and useless facts.</p>
-                </div>
-                <div class="feature">
-                    <h3>💬 Conversation History</h3>
-                    <p>Maintains a history of conversations with timestamps and mood tracking.</p>
-                </div>
-                <div class="feature">
-                    <h3>🔗 API Integration</h3>
-                    <p>Integrates with multiple free APIs for dynamic content without any API keys required.</p>
-                </div>
-                <div class="feature">
-                    <h3>🐍 Pure Python</h3>
-                    <p>Built entirely in Python with no external dependencies beyond the requests library.</p>
-                </div>
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>Chat with FunBot</h2>
+                <p>I can detect your emotions and respond accordingly!</p>
             </div>
-        </section>
-
-        <section id="demo" class="card">
-            <h2>Live Demo</h2>
-            <p>Try out FunBot in this interactive demo (now with real emotion detection!):</p>
             
-            <div class="demo">
-                <div class="chat-container">
-                    <div class="chat-header">
-                        <h3>FunBot Chat</h3>
-                    </div>
-                    <div class="chat-messages" id="chatMessages">
-                        <div class="message bot-message">
-                            <div class="message-bubble bot-bubble">
-                                🤖 Hello! I'm FunBot, your emotional chatbot! How are you feeling today?
-                            </div>
-                        </div>
-                    </div>
-                    <div class="typing-indicator" id="typingIndicator">
-                        FunBot is typing...
-                    </div>
-                    <div style="padding: 15px; display: flex;">
-                        <input type="text" id="userInput" placeholder="Type your message here..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; margin-right: 10px;">
-                        <button class="btn" onclick="sendMessage()" style="padding: 10px 20px;">Send</button>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-bubble bot-bubble">
+                        <strong>🤖 FunBot:</strong> Hello! I'm your emotional chatbot! I can detect if you're feeling happy, sad, or angry, and I can tell you jokes and facts. How are you feeling today?
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="code" class="card">
-            <h2>Code Implementation</h2>
-            <p>Here's the main implementation of FunBot:</p>
-            
-            <div class="code-block">
-<pre>import random
-import requests
-from datetime import datetime
-
-class EmotionalChatbot:
-    def __init__(self):
-        self.name = "FunBot"
-        self.mood = "happy"
-        self.convohistory = []
-        self.user_mood = "neutral"
-
-        # Emotional keyword dictionaries
-        self.sad_words = ["sad", "unhappy", "depressed", "crying", "hurt", "upset"]
-        self.happy_words = ["happy", "joyful", "excited", "glad", "cheerful", "great"]
-        self.angry_words = ["angry", "mad", "furious", "hate", "annoyed", "irritated"]
-
-    def detect_emotion(self, text):
-        # Emotion detection logic
-        text_lower = text.lower()
-        
-        sad_count = sum(1 for word in self.sad_words if word in text_lower)
-        happy_count = sum(1 for word in self.happy_words if word in text_lower)
-        angry_count = sum(1 for word in self.angry_words if word in text_lower)
-        
-        if sad_count > happy_count and sad_count > angry_count:
-            return "sad"
-        elif happy_count > sad_count and happy_count > angry_count:
-            return "happy"
-        elif angry_count > sad_count and angry_count > happy_count:
-            return "angry"
-        else:
-            return "neutral"
-
-    def get_joke(self):
-        # Fetches jokes from multiple APIs
-        apis = [
-            "https://official-joke-api.appspot.com/random_joke",
-            "https://v2.jokeapi.dev/joke/Any?type=single",
-            "https://icanhazdadjoke.com/"
-        ]
-        
-        # API integration code here...
-        return "Why don't scientists trust atoms? Because they make up everything!"
-
-    def get_fact(self):
-        # Fetches facts from multiple APIs
-        fact_apis = [
-            "https://uselessfacts.jsph.pl/api/v2/facts/random",
-            "https://catfact.ninja/fact",
-            "https://dog-api.kinduff.com/api/facts"
-        ]
-        
-        # API integration code here...
-        return "Octopuses have three hearts and blue blood!"
-
-    def get_response(self, user_input):
-        self.user_mood = self.detect_emotion(user_input)
-        
-        # Log conversation
-        self.convohistory.append({
-            "user": user_input,
-            "bot": "",
-            "mood": self.user_mood,
-            "timestamp": datetime.now().strftime("%H:%M:%S")
-        })
-
-        # Handle special commands and emotional responses
-        # Response logic here...
-        return "I'm here to chat with you! How are you feeling?"
-
-    def start_chat(self):
-        print(f"🤖 Hello! I'm {self.name}, your emotional chatbot!")
-        # Chat initialization code
-</pre>
+            <div class="typing-indicator" id="typingIndicator">
+                FunBot is typing...
             </div>
-            
-            <p>The complete code is available in the repository with detailed comments and error handling.</p>
-        </section>
 
-        <section class="card">
-            <h2>Installation & Usage</h2>
-            <h3>Requirements</h3>
-            <div class="code-block">
-                <pre>Python 3.6+
-requests library</pre>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()">Send</button>
             </div>
-            
-            <h3>Installation</h3>
-            <div class="code-block">
-                <pre>pip install requests
-git clone https://github.com/muhib876069/funbot.git
-cd funbot</pre>
-            </div>
-            
-            <h3>Running the Bot</h3>
-            <div class="code-block">
-                <pre>python funbot.py</pre>
-            </div>
-        </section>
+        </div>
 
-        <section class="card">
-            <h2>API Integrations</h2>
-            <p>FunBot integrates with these free APIs:</p>
-            <ul style="margin-left: 20px; margin-top: 10px;">
-                <li><strong>Joke APIs:</strong> Official Joke API, JokeAPI, icanhazdadjoke</li>
-                <li><strong>Fact APIs:</strong> Useless Facts API, Cat Facts API, Dog Facts API, Numbers API</li>
-            </ul>
-            <p>All APIs are free to use and don't require API keys for basic usage.</p>
-        </section>
-
-        <footer class="footer">
-            <p>Made with ❤️ using Python | FunBot - Emotional AI Chatbot</p>
-            
-        </footer>
+        <div class="info-section">
+            <p><strong>Try these commands:</strong> "I'm feeling sad", "Tell me a joke", "Give me a fact", "I'm so angry!"</p>
+            <p><a href="https://github.com/munib876069/A-Chatbot" target="_blank">View Source Code on GitHub</a></p>
+        </div>
     </div>
 
     <script>
-        
+        // Emotional Chatbot Logic
         class EmotionalChatbot {
             constructor() {
                 this.name = "FunBot";
-                this.mood = "happy";
-                this.convohistory = [];
                 this.user_mood = "neutral";
                 
-                this.sad_words = ["sad", "unhappy", "depressed", "crying", "hurt", "upset"];
-                this.happy_words = ["happy", "joyful", "excited", "glad", "cheerful", "great", "good", "awesome"];
+                this.sad_words = ["sad", "unhappy", "depressed", "crying", "hurt", "upset", "miserable"];
+                this.happy_words = ["happy", "joyful", "excited", "glad", "cheerful", "great", "good", "awesome", "amazing"];
                 this.angry_words = ["angry", "mad", "furious", "hate", "annoyed", "irritated", "frustrated", "pissed"];
                 
                 this.fallback_jokes = [
                     "Why don't scientists trust atoms? Because they make up everything!",
                     "Why did the scarecrow win an award? He was outstanding in his field!",
-                    "Why don't eggs tell jokes? They'd crack each other up!"
+                    "Why don't eggs tell jokes? They'd crack each other up!",
+                    "What do you call a fake noodle? An impasta!",
+                    "Why did the math book look so sad? Because it had too many problems!"
                 ];
                 
                 this.fallback_facts = [
@@ -429,95 +221,67 @@ cd funbot</pre>
             detectEmotion(text) {
                 const text_lower = text.toLowerCase();
                 
-                let sad_count = 0;
-                let happy_count = 0;
-                let angry_count = 0;
+                let sad_count = this.sad_words.filter(word => text_lower.includes(word)).length;
+                let happy_count = this.happy_words.filter(word => text_lower.includes(word)).length;
+                let angry_count = this.angry_words.filter(word => text_lower.includes(word)).length;
                 
-                this.sad_words.forEach(word => {
-                    if (text_lower.includes(word)) sad_count++;
-                });
-                
-                this.happy_words.forEach(word => {
-                    if (text_lower.includes(word)) happy_count++;
-                });
-                
-                this.angry_words.forEach(word => {
-                    if (text_lower.includes(word)) angry_count++;
-                });
-                
-                if (sad_count > happy_count && sad_count > angry_count) {
-                    return "sad";
-                } else if (happy_count > sad_count && happy_count > angry_count) {
-                    return "happy";
-                } else if (angry_count > sad_count && angry_count > happy_count) {
-                    return "angry";
-                } else {
-                    return "neutral";
-                }
+                if (sad_count > happy_count && sad_count > angry_count) return "sad";
+                if (happy_count > sad_count && happy_count > angry_count) return "happy";
+                if (angry_count > sad_count && angry_count > happy_count) return "angry";
+                return "neutral";
             }
 
             async getJoke() {
-                const apis = [
-                    "https://official-joke-api.appspot.com/random_joke",
-                    "https://v2.jokeapi.dev/joke/Any?type=single"
-                ];
-                
-                for (const api_url of apis) {
-                    try {
-                        const response = await fetch(api_url);
-                        if (response.ok) {
-                            const data = await response.json();
-                            
-                            if (api_url.includes("official-joke-api")) {
-                                return `${data.setup} - ${data.punchline}`;
-                            } else if (api_url.includes("jokeapi")) {
-                                return data.joke || `${data.setup || ''} - ${data.delivery || ''}`;
+                try {
+                    // Try multiple joke APIs
+                    const apis = [
+                        "https://v2.jokeapi.dev/joke/Any?type=single",
+                        "https://official-joke-api.appspot.com/random_joke"
+                    ];
+                    
+                    for (let api_url of apis) {
+                        try {
+                            const response = await fetch(api_url);
+                            if (response.ok) {
+                                const data = await response.json();
+                                if (api_url.includes("official-joke-api")) {
+                                    return `${data.setup} - ${data.punchline}`;
+                                } else {
+                                    return data.joke || `${data.setup} - ${data.delivery}`;
+                                }
                             }
+                        } catch (e) {
+                            continue;
                         }
-                    } catch (error) {
-                        console.log(`API ${api_url} failed, trying next...`);
                     }
+                } catch (error) {
+                    console.log("Joke API error:", error);
                 }
-                
                 
                 return this.fallback_jokes[Math.floor(Math.random() * this.fallback_jokes.length)];
             }
 
             async getFact() {
-                const fact_apis = [
-                    "https://uselessfacts.jsph.pl/api/v2/facts/random",
-                    "https://catfact.ninja/fact",
-                    "https://dog-api.kinduff.com/api/facts"
-                ];
-                
-                for (const api_url of fact_apis) {
-                    try {
-                        const response = await fetch(api_url);
-                        if (response.ok) {
-                            const data = await response.json();
-                            
-                            if (api_url.includes("uselessfacts")) {
-                                return data.text;
-                            } else if (api_url.includes("catfact")) {
-                                return data.fact;
-                            } else if (api_url.includes("dog-api")) {
-                                return data.facts[0];
-                            }
-                        }
-                    } catch (error) {
-                        console.log(`API ${api_url} failed, trying next...`);
-                    }
-                }
-                
                 try {
-                    const number = Math.floor(Math.random() * 1000) + 1;
-                    const response = await fetch(`http://numbersapi.com/${number}?json`);
-                    if (response.ok) {
-                        const data = await response.json();
-                        return data.text;
+                    // multiple fact APIs
+                    const apis = [
+                        "https://uselessfacts.jsph.pl/api/v2/facts/random",
+                        "https://catfact.ninja/fact"
+                    ];
+                    
+                    for (let api_url of apis) {
+                        try {
+                            const response = await fetch(api_url);
+                            if (response.ok) {
+                                const data = await response.json();
+                                return data.text || data.fact;
+                            }
+                        } catch (e) {
+                            continue;
+                        }
                     }
                 } catch (error) {
-                    console.log("Number API failed");
+                    console.log("Fact API error:", error);
                 }
                 
                 return this.fallback_facts[Math.floor(Math.random() * this.fallback_facts.length)];
@@ -525,123 +289,122 @@ cd funbot</pre>
 
             async getResponse(user_input) {
                 this.user_mood = this.detectEmotion(user_input);
-                
-                this.convohistory.push({
-                    user: user_input,
-                    bot: "",
-                    mood: this.user_mood,
-                    timestamp: new Date().toLocaleTimeString()
-                });
-                
-                const user_input_lower = user_input.toLowerCase();
-                
-                if (user_input_lower.includes('joke') || user_input_lower.includes('make me laugh')) {
+                const input_lower = user_input.toLowerCase();
+
+                // Handlingcommands
+                if (input_lower.includes('joke') || input_lower.includes('make me laugh')) {
                     const joke = await this.getJoke();
                     return `😂 ${joke}`;
                 }
-                
-                if (user_input_lower.includes('fact') || user_input_lower.includes('tell me something')) {
+
+                if (input_lower.includes('fact') || input_lower.includes('tell me something')) {
                     const fact = await this.getFact();
                     return `📚 ${fact}`;
                 }
-                
-                const emotional_responses = {
+
+                // Emotional responses
+                const responses = {
                     "sad": [
-                        "I'm sorry you're feeling down. Would you like to hear a joke or a fun fact to cheer you up?",
-                        "It's okay to feel sad sometimes. Remember, this too shall pass! 🌈",
-                        "I'm here for you. Sometimes learning something new can help shift our perspective!"
+                        "I'm sorry you're feeling down. Would you like to hear a joke to cheer you up? 😊",
+                        "It's okay to feel sad sometimes. Remember, every cloud has a silver lining! 🌈",
+                        "I'm here for you. Sometimes sharing how you feel can make things better."
                     ],
                     "happy": [
-                        "It's wonderful to see you so happy! Your joy is contagious! 😊",
+                        "It's wonderful to see you so happy! Your positivity is contagious! 😄",
                         "Great to see you in such a good mood! Want to celebrate with a fun fact?",
-                        "Your happiness brightens up the conversation! 🌟"
+                        "Your happiness brightens up this conversation! 🌟"
                     ],
                     "angry": [
-                        "I sense some frustration. Take a deep breath - you've got this! 💪",
-                        "It's okay to feel angry sometimes. How about we channel that energy into learning something new?",
-                        "Let's take a moment to breathe together. In... and out..."
+                        "I sense you're feeling frustrated. Take a deep breath - you can handle this! 💪",
+                        "It's okay to feel angry sometimes. How about we channel that energy into something positive?",
+                        "Let's take a moment to relax. Would you like to hear a joke to lighten the mood?"
                     ],
                     "neutral": [
                         "How's your day going?",
                         "What would you like to talk about?",
-                        "Ready for some interesting conversation?"
+                        "I'm here to chat with you! Feel free to share anything.",
+                        "Ready for an interesting conversation?"
                     ]
                 };
+
+                let response = responses[this.user_mood][Math.floor(Math.random() * responses[this.user_mood].length)];
                 
-                let response = emotional_responses[this.user_mood][Math.floor(Math.random() * emotional_responses[this.user_mood].length)];
-                
-                if (Math.random() < 0.3) {
+                // Add extra content sometimes
+                if (Math.random() < 0.4) {
                     if (Math.random() > 0.5) {
                         const fact = await this.getFact();
-                        response += `\n\nHere's a fun fact: ${fact}`;
+                        response += `\n\nHere's an interesting fact: ${fact}`;
                     } else {
                         const joke = await this.getJoke();
-                        response += `\n\nHere's a joke: ${joke}`;
+                        response += `\n\nHere's a joke for you: ${joke}`;
                     }
                 }
-                
+
                 return response;
             }
         }
 
+        // Initialize chatbot
         const chatbot = new EmotionalChatbot();
 
-        async function sendMessage() {
-            const userInput = document.getElementById('userInput');
-            const chatMessages = document.getElementById('chatMessages');
-            const typingIndicator = document.getElementById('typingIndicator');
-            
-            if (userInput.value.trim() === '') return;
-            
-            const userMessage = document.createElement('div');
-            userMessage.className = 'message user-message';
-            userMessage.innerHTML = `<div class="message-bubble user-bubble">${userInput.value}</div>`;
-            chatMessages.appendChild(userMessage);
-            
-            typingIndicator.style.display = 'block';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            
-            
-            const userText = userInput.value;
-            userInput.value = '';
-            
-            try {
-                e
-                const botResponse = await chatbot.getResponse(userText);
-                
-                
-                typingIndicator.style.display = 'none';
-                
-                
-                const botMessage = document.createElement('div');
-                botMessage.className = 'message bot-message';
-                
-                
-                const formattedResponse = botResponse.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
-                botMessage.innerHTML = `<div class="message-bubble bot-bubble">${formattedResponse}</div>`;
-                chatMessages.appendChild(botMessage);
-                
-            } catch (error) {
-               
-                typingIndicator.style.display = 'none';
-                
-                
-                const errorMessage = document.createElement('div');
-                errorMessage.className = 'message bot-message';
-                errorMessage.innerHTML = `<div class="message-bubble bot-bubble">Sorry, I encountered an error. Please try again!</div>`;
-                chatMessages.appendChild(errorMessage);
-            }
-            
-            
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-        
-        
-        document.getElementById('userInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
+        // DOM elements
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
                 sendMessage();
             }
-        });
+        }
+
+        async function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            
+            addMessage(message, 'user');
+            userInput.value = '';
+
+            // typing indicator
+            typingIndicator.style.display = 'block';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            try {
+                // bot response
+                const response = await chatbot.getResponse(message);
+                
+                // Hide typing indicator and add response
+                typingIndicator.style.display = 'none';
+                addMessage(response, 'bot');
+            } catch (error) {
+                typingIndicator.style.display = 'none';
+                addMessage("Sorry, I encountered an error. Please try again!", 'bot');
+            }
+        }
+
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            
+            const bubble = document.createElement('div');
+            bubble.className = `message-bubble ${sender}-bubble`;
+            
+            // Format the text with line breaks
+            const formattedText = text.replace(/\n/g, '<br>');
+            bubble.innerHTML = `<strong>${sender === 'bot' ? '🤖 FunBot:' : '👤 You:'}</strong> ${formattedText}`;
+            
+            messageDiv.appendChild(bubble);
+            chatMessages.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Focus on input when page loads
+        window.onload = function() {
+            userInput.focus();
+        };
     </script>
 </body>
 </html>
