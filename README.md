@@ -1,24 +1,30 @@
-# FunBot — Emotional AI Chatbot
+<h1 align="center">
+   🤖FunBot — Emotional AI Chatbot
+</h1>
 
-[Live Demo](https://muhib876069.github.io/A-Chatbot/funbot-demo.html) • Built with Python • Demo hosted with GitHub Pages
+<p align="center">
+  <img src="Screenshot 2025-11-16 140055.png" alt="App Screenshot" width="700"/>
+</p>
+
+# [Live Demo](https://muhib876069.github.io/A-Chatbot/funbot-demo.html) • Built with Python • Demo hosted with GitHub Pages
 
 ![FunBot demo](assets/demo.gif)
 
 Short description
 FunBot is a small emotional AI chatbot that detects user mood from simple keywords and replies appropriately. This repo includes a live front-end demo (index.html) and the main Python implementation.
 
-Demo
+## Demo
 - Live demo: https://muhib876069.github.io/A-Chatbot/funbot-demo.html
 - Click "Live Demo" on the page to try it in your browser.
 
-Features
+## 🛠️Features
 - Basic emotion detection (happy, sad, angry, neutral)
 - Joke and fact endpoints (integrates free APIs)
-- Simple interactive front-end (index.html) for quick testing
+- Simple interactive front-end (funbot-demo.html) for quick testing
 - Conversation history with timestamps
 
-Quickstart
-Requirements:
+## Quickstart
+### Requirements:
 - Python 3.6+
 - requests
 
@@ -32,10 +38,10 @@ Run locally (python backend)
 
 If you're only demoing the front-end, open index.html in your browser or use the Live Demo link above.
 
-Repository structure
-- index.html — Front-end demo (hosted with GitHub Pages)
+## Repository structure
+- funbot-demo.html — Front-end demo (hosted with GitHub Pages)
 - funbot.py / src/ — Python implementation
-- assets/ — screenshots and demo GIF
+— screenshots and demo GIF
 
 Contact
 Maintained by @muhib876069 — happy to receive feedback and issues!
