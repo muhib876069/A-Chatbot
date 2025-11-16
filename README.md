@@ -1,6 +1,6 @@
 # FunBot — Emotional AI Chatbot
 
-[Live Demo](https://muhib876069.github.io/A-Chatbot/) • Built with Python • Demo hosted with GitHub Pages
+[Live Demo](https://muhib876069.github.io/A-Chatbot/funbot-demo.html) • Built with Python • Demo hosted with GitHub Pages
 
 ![FunBot demo](assets/demo.gif)
 
