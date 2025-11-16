@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from app import EmotionalChatbot   # your original class
+from app import EmotionalChatbot  
 
 bot = EmotionalChatbot()
 app = Flask(__name__)
