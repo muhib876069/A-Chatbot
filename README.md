@@ -1,4 +1,3 @@
-[Uploading README_Version1.md…]()
 # FunBot — Emotional AI Chatbot
 
 [Live Demo](https://muhib876069.github.io/A-Chatbot/) • Built with Python • Demo hosted with GitHub Pages
@@ -37,17 +36,6 @@ Repository structure
 - index.html — Front-end demo (hosted with GitHub Pages)
 - funbot.py / src/ — Python implementation
 - assets/ — screenshots and demo GIF
-
-Make your demo shine
-- Add assets/demo.gif (short recording of the demo)
-- Add a social preview image in repo Settings → Options → Social preview
-- Fill in repo description and topics (chatbot, emotional-ai, python, github-pages, demo)
-
-License
-Include a LICENSE file (MIT recommended) so people can reuse your code.
-
-Contributing
-PRs are welcome. Add tests and update the README when you change features.
 
 Contact
 Maintained by @muhib876069 — happy to receive feedback and issues!
