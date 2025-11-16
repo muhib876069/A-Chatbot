@@ -183,6 +183,13 @@
             margin-top: 40px;
         }
 
+        .typing-indicator {
+            display: none;
+            padding: 10px;
+            color: #666;
+            font-style: italic;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2.5rem;
@@ -245,7 +252,7 @@
 
         <section id="demo" class="card">
             <h2>Live Demo</h2>
-            <p>Try out FunBot in this interactive demo:</p>
+            <p>Try out FunBot in this interactive demo (now with real emotion detection!):</p>
             
             <div class="demo">
                 <div class="chat-container">
@@ -258,6 +265,9 @@
                                 🤖 Hello! I'm FunBot, your emotional chatbot! How are you feeling today?
                             </div>
                         </div>
+                    </div>
+                    <div class="typing-indicator" id="typingIndicator">
+                        FunBot is typing...
                     </div>
                     <div style="padding: 15px; display: flex;">
                         <input type="text" id="userInput" placeholder="Type your message here..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; margin-right: 10px;">
@@ -306,14 +316,14 @@ class EmotionalChatbot:
             return "neutral"
 
     def get_joke(self):
-        # Fetch jokes from multiple APIs
+        # Fetches jokes from multiple APIs
         apis = [
             "https://official-joke-api.appspot.com/random_joke",
             "https://v2.jokeapi.dev/joke/Any?type=single",
             "https://icanhazdadjoke.com/"
         ]
         
-        # API integration code here
+        # API integration code here...
         return "Why don't scientists trust atoms? Because they make up everything!"
 
     def get_fact(self):
@@ -344,7 +354,7 @@ class EmotionalChatbot:
 
     def start_chat(self):
         print(f"🤖 Hello! I'm {self.name}, your emotional chatbot!")
-        # Chat initialization code...
+        # Chat initialization code
 </pre>
             </div>
             
@@ -384,58 +394,249 @@ cd funbot</pre>
 
         <footer class="footer">
             <p>Made with ❤️ using Python | FunBot - Emotional AI Chatbot</p>
-            <p>© 2023 FunBot Project</p>
+            
         </footer>
     </div>
 
     <script>
-        // Simple demo functionality
-        function sendMessage() {
+        
+        class EmotionalChatbot {
+            constructor() {
+                this.name = "FunBot";
+                this.mood = "happy";
+                this.convohistory = [];
+                this.user_mood = "neutral";
+                
+                this.sad_words = ["sad", "unhappy", "depressed", "crying", "hurt", "upset"];
+                this.happy_words = ["happy", "joyful", "excited", "glad", "cheerful", "great", "good", "awesome"];
+                this.angry_words = ["angry", "mad", "furious", "hate", "annoyed", "irritated", "frustrated", "pissed"];
+                
+                this.fallback_jokes = [
+                    "Why don't scientists trust atoms? Because they make up everything!",
+                    "Why did the scarecrow win an award? He was outstanding in his field!",
+                    "Why don't eggs tell jokes? They'd crack each other up!"
+                ];
+                
+                this.fallback_facts = [
+                    "Honey never spoils. Archaeologists have found 3000-year-old honey that's still edible!",
+                    "Octopuses have three hearts and blue blood!",
+                    "A day on Venus is longer than a year on Venus!",
+                    "Bananas are berries, but strawberries aren't!",
+                    "The shortest war in history was between Britain and Zanzibar in 1896 and lasted only 38 minutes!"
+                ];
+            }
+
+            detectEmotion(text) {
+                const text_lower = text.toLowerCase();
+                
+                let sad_count = 0;
+                let happy_count = 0;
+                let angry_count = 0;
+                
+                this.sad_words.forEach(word => {
+                    if (text_lower.includes(word)) sad_count++;
+                });
+                
+                this.happy_words.forEach(word => {
+                    if (text_lower.includes(word)) happy_count++;
+                });
+                
+                this.angry_words.forEach(word => {
+                    if (text_lower.includes(word)) angry_count++;
+                });
+                
+                if (sad_count > happy_count && sad_count > angry_count) {
+                    return "sad";
+                } else if (happy_count > sad_count && happy_count > angry_count) {
+                    return "happy";
+                } else if (angry_count > sad_count && angry_count > happy_count) {
+                    return "angry";
+                } else {
+                    return "neutral";
+                }
+            }
+
+            async getJoke() {
+                const apis = [
+                    "https://official-joke-api.appspot.com/random_joke",
+                    "https://v2.jokeapi.dev/joke/Any?type=single"
+                ];
+                
+                for (const api_url of apis) {
+                    try {
+                        const response = await fetch(api_url);
+                        if (response.ok) {
+                            const data = await response.json();
+                            
+                            if (api_url.includes("official-joke-api")) {
+                                return `${data.setup} - ${data.punchline}`;
+                            } else if (api_url.includes("jokeapi")) {
+                                return data.joke || `${data.setup || ''} - ${data.delivery || ''}`;
+                            }
+                        }
+                    } catch (error) {
+                        console.log(`API ${api_url} failed, trying next...`);
+                    }
+                }
+                
+                
+                return this.fallback_jokes[Math.floor(Math.random() * this.fallback_jokes.length)];
+            }
+
+            async getFact() {
+                const fact_apis = [
+                    "https://uselessfacts.jsph.pl/api/v2/facts/random",
+                    "https://catfact.ninja/fact",
+                    "https://dog-api.kinduff.com/api/facts"
+                ];
+                
+                for (const api_url of fact_apis) {
+                    try {
+                        const response = await fetch(api_url);
+                        if (response.ok) {
+                            const data = await response.json();
+                            
+                            if (api_url.includes("uselessfacts")) {
+                                return data.text;
+                            } else if (api_url.includes("catfact")) {
+                                return data.fact;
+                            } else if (api_url.includes("dog-api")) {
+                                return data.facts[0];
+                            }
+                        }
+                    } catch (error) {
+                        console.log(`API ${api_url} failed, trying next...`);
+                    }
+                }
+                
+                try {
+                    const number = Math.floor(Math.random() * 1000) + 1;
+                    const response = await fetch(`http://numbersapi.com/${number}?json`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        return data.text;
+                    }
+                } catch (error) {
+                    console.log("Number API failed");
+                }
+                
+                return this.fallback_facts[Math.floor(Math.random() * this.fallback_facts.length)];
+            }
+
+            async getResponse(user_input) {
+                this.user_mood = this.detectEmotion(user_input);
+                
+                this.convohistory.push({
+                    user: user_input,
+                    bot: "",
+                    mood: this.user_mood,
+                    timestamp: new Date().toLocaleTimeString()
+                });
+                
+                const user_input_lower = user_input.toLowerCase();
+                
+                if (user_input_lower.includes('joke') || user_input_lower.includes('make me laugh')) {
+                    const joke = await this.getJoke();
+                    return `😂 ${joke}`;
+                }
+                
+                if (user_input_lower.includes('fact') || user_input_lower.includes('tell me something')) {
+                    const fact = await this.getFact();
+                    return `📚 ${fact}`;
+                }
+                
+                const emotional_responses = {
+                    "sad": [
+                        "I'm sorry you're feeling down. Would you like to hear a joke or a fun fact to cheer you up?",
+                        "It's okay to feel sad sometimes. Remember, this too shall pass! 🌈",
+                        "I'm here for you. Sometimes learning something new can help shift our perspective!"
+                    ],
+                    "happy": [
+                        "It's wonderful to see you so happy! Your joy is contagious! 😊",
+                        "Great to see you in such a good mood! Want to celebrate with a fun fact?",
+                        "Your happiness brightens up the conversation! 🌟"
+                    ],
+                    "angry": [
+                        "I sense some frustration. Take a deep breath - you've got this! 💪",
+                        "It's okay to feel angry sometimes. How about we channel that energy into learning something new?",
+                        "Let's take a moment to breathe together. In... and out..."
+                    ],
+                    "neutral": [
+                        "How's your day going?",
+                        "What would you like to talk about?",
+                        "Ready for some interesting conversation?"
+                    ]
+                };
+                
+                let response = emotional_responses[this.user_mood][Math.floor(Math.random() * emotional_responses[this.user_mood].length)];
+                
+                if (Math.random() < 0.3) {
+                    if (Math.random() > 0.5) {
+                        const fact = await this.getFact();
+                        response += `\n\nHere's a fun fact: ${fact}`;
+                    } else {
+                        const joke = await this.getJoke();
+                        response += `\n\nHere's a joke: ${joke}`;
+                    }
+                }
+                
+                return response;
+            }
+        }
+
+        const chatbot = new EmotionalChatbot();
+
+        async function sendMessage() {
             const userInput = document.getElementById('userInput');
             const chatMessages = document.getElementById('chatMessages');
+            const typingIndicator = document.getElementById('typingIndicator');
             
             if (userInput.value.trim() === '') return;
             
-            // Add user message
             const userMessage = document.createElement('div');
             userMessage.className = 'message user-message';
             userMessage.innerHTML = `<div class="message-bubble user-bubble">${userInput.value}</div>`;
             chatMessages.appendChild(userMessage);
             
-            // Simulate bot response
-            setTimeout(() => {
-                fetch("http://127.0.0.1:5000/chat", {     method: "POST",     headers: {"Content-Type": "application/json"},     body: JSON.stringify({message: userInput.value}) }) .then(res => res.json()) .then(data => {     const botMessage = document.createElement("div");     botMessage.className = "message bot-message";     botMessage.innerHTML = `<div class="message-bubble bot-bubble">${data.reply}</div>`;     chatMessages.appendChild(botMessage);      chatMessages.scrollTop = chatMessages.scrollHeight; });
-                const botMessage = document.createElement('div');
-                botMessage.className = 'message bot-message';
-                botMessage.innerHTML = `<div class="message-bubble bot-bubble">${botResponse}</div>`;
-                chatMessages.appendChild(botMessage);
-                
-                // Scroll to bottom
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 1000);
+            typingIndicator.style.display = 'block';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
             
-            // Clear input
+            
+            const userText = userInput.value;
             userInput.value = '';
             
-            // Scroll to bottom
+            try {
+                e
+                const botResponse = await chatbot.getResponse(userText);
+                
+                
+                typingIndicator.style.display = 'none';
+                
+                
+                const botMessage = document.createElement('div');
+                botMessage.className = 'message bot-message';
+                
+                
+                const formattedResponse = botResponse.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+                botMessage.innerHTML = `<div class="message-bubble bot-bubble">${formattedResponse}</div>`;
+                chatMessages.appendChild(botMessage);
+                
+            } catch (error) {
+               
+                typingIndicator.style.display = 'none';
+                
+                
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'message bot-message';
+                errorMessage.innerHTML = `<div class="message-bubble bot-bubble">Sorry, I encountered an error. Please try again!</div>`;
+                chatMessages.appendChild(errorMessage);
+            }
+            
+            
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
         
-   
-            }
-            
-            const responses = [
-                "That's interesting! Tell me more!",
-                "How's your day going?",
-                "What would you like to talk about?",
-                "I'm here to chat with you!",
-                "Ready for some interesting conversation?"
-            ];
-            
-            return responses[Math.floor(Math.random() * responses.length)];
-        }
         
-        // Allow sending message with Enter key
         document.getElementById('userInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 sendMessage();
@@ -443,6 +644,4 @@ cd funbot</pre>
         });
     </script>
 </body>
-
 </html>
-
