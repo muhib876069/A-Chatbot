@@ -8,7 +8,7 @@ Short description
 FunBot is a small emotional AI chatbot that detects user mood from simple keywords and replies appropriately. This repo includes a live front-end demo (index.html) and the main Python implementation.
 
 Demo
-- Live demo: https://muhib876069.github.io/A-Chatbot/
+- Live demo: https://muhib876069.github.io/A-Chatbot/funbot-demo.html
 - Click "Live Demo" on the page to try it in your browser.
 
 Features
