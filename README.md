@@ -43,5 +43,5 @@ If you're only demoing the front-end, open index.html in your browser or use the
 - funbot.py / src/ — Python implementation
 — screenshots and demo GIF
 
-Contact
-Maintained by @muhib876069 — happy to receive feedback and issues!
+# Contact
+Maintained by https://github.com/muhib876069 — happy to receive feedback and issues!
